@@ -1,0 +1,273 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Deutsch (Deutschland) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EXESETUP DIALOGEX 0, 0, 352, 165
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Executable Setup"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Executable Setup",IDC_STATIC,7,7,338,151
+    LTEXT           "Command Line:",IDC_STATIC,13,42,50,8
+    EDITTEXT        IDC_EDIT1,66,19,279,85,ES_MULTILINE | WS_VSCROLL
+    EDITTEXT        IDC_EDIT2,65,114,280,14,ES_READONLY | NOT WS_BORDER
+    DEFPUSHBUTTON   "Reset",IDRESET,65,140,50,14
+    DEFPUSHBUTTON   "OK",IDOK,229,140,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,291,140,50,14
+END
+
+IDD_ENCODING_PRESET DIALOGEX 0, 0, 304, 177
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Encoding Preset"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,126,157,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,180,157,50,14
+    GROUPBOX        "Source Window",IDC_STATIC,7,7,287,35
+    LTEXT           "Position X:",IDC_STATIC,17,23,34,8
+    EDITTEXT        IDC_SRCX,53,20,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Y:",IDC_STATIC,97,23,8,8
+    EDITTEXT        IDC_SRCY,107,20,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Width:",IDC_STATIC,150,23,22,8
+    EDITTEXT        IDC_SRCW,174,20,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Height:",IDC_STATIC,218,23,24,8
+    EDITTEXT        IDC_SRCH,244,20,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "Destination Format",IDC_STATIC,6,46,288,38
+    LTEXT           "Width:",IDC_STATIC,17,65,22,8
+    EDITTEXT        IDC_DSTW,54,62,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Height:",IDC_STATIC,98,65,24,8
+    EDITTEXT        IDC_DSTH,124,62,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Frame Rate:",IDC_STATIC,194,65,41,8
+    COMBOBOX        IDC_COMBO_FRAMERATE,235,63,48,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "H.264 Encoder",IDC_STATIC,6,90,288,54
+    LTEXT           "Profile:",IDC_STATIC,17,110,24,8
+    COMBOBOX        IDC_COMBO_PROFILE,43,108,48,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Level:",IDC_STATIC,100,110,20,8
+    COMBOBOX        IDC_COMBO_LEVEL,124,108,48,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Entropy Coding:",IDC_STATIC,183,110,53,8
+    COMBOBOX        IDC_COMBO_ENTROPY,239,108,48,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Has B Frames",IDC_CHECK_HASBFRAMES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,122,128,59,10
+    DEFPUSHBUTTON   "Verify",IDVERIFY,72,156,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_EXESETUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 345
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 158
+    END
+
+    IDD_ENCODING_PRESET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 297
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Deutsch (Deutschland) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Englisch (USA) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MXPTINY_DIALOG DIALOGEX 0, 0, 320, 127
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "MXPTiny - Version 0.7 - © 2013 BayCom GmbH"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "No device detected",IDC_STATIC_CONFIGBOX,7,7,306,113
+    LTEXT           "Input Device:",IDC_STATIC_INPUT_DEVICE,17,28,44,8
+    COMBOBOX        IDC_COMBO_INPUT_DEVICE,96,25,150,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Encoding Preset:",IDC_STATIC_ENCODING_MODE,17,51,55,8
+    COMBOBOX        IDC_COMBO_ENCODING_PRESET,96,49,90,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Customize",IDC_BUTTON_CUSTOMIZE,199,48,47,14
+    PUSHBUTTON      "Prev. Cfg",IDC_BUTTON_PREVCFG,257,25,47,14
+    PUSHBUTTON      "Preview",IDC_BUTTON_START_PREVIEW,258,48,47,14
+    LTEXT           "Test",IDC_STATIC_ENCODING_PRESET,17,74,285,8
+    LTEXT           "Bitrate:",IDC_STATIC_BITRATE,18,96,25,8
+    CONTROL         "",IDC_SLIDER_BITRATE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,93,93,100,15
+    CTEXT           "Statisch",IDC_STATIC_BITRATE_CURRENT,103,110,82,8
+    PUSHBUTTON      "Folder",IDC_BUTTON_FOLDER,204,93,47,14
+    PUSHBUTTON      "Record",IDC_BUTTON_RECORD,258,93,47,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_MXPTINY_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 120
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\MXPTiny.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\MXPTiny.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,7,0,0
+ PRODUCTVERSION 0,7,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "BayCom GmbH"
+            VALUE "FileDescription", "TS File Streamer for Decklink devices"
+            VALUE "FileVersion", "0.7.0.0"
+            VALUE "InternalName", "MXPTiny.exe"
+            VALUE "LegalCopyright", "(c) BayCom GmbH.  All rights reserved."
+            VALUE "OriginalFilename", "MXPTiny.exe"
+            VALUE "ProductName", "MXPTiny"
+            VALUE "ProductVersion", "0.7.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+#endif    // Englisch (USA) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\MXPTiny.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
