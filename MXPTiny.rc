@@ -121,7 +121,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 IDD_MXPTINY_DIALOG DIALOGEX 0, 0, 320, 127
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
-CAPTION "MXPTiny - Version 0.7 - © 2013 BayCom GmbH"
+CAPTION "MXPTiny - Version 0.8 - © 2013 BayCom GmbH"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "No device detected",IDC_STATIC_CONFIGBOX,7,7,306,113
@@ -214,8 +214,8 @@ IDR_MAINFRAME           ICON                    "res\\MXPTiny.ico"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,7,0,0
- PRODUCTVERSION 0,7,0,0
+ FILEVERSION 0,8,0,0
+ PRODUCTVERSION 0,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -232,12 +232,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "BayCom GmbH"
             VALUE "FileDescription", "TS File Streamer for Decklink devices"
-            VALUE "FileVersion", "0.7.0.0"
+            VALUE "FileVersion", "0.8.0.0"
             VALUE "InternalName", "MXPTiny.exe"
             VALUE "LegalCopyright", "(c) BayCom GmbH.  All rights reserved."
             VALUE "OriginalFilename", "MXPTiny.exe"
             VALUE "ProductName", "MXPTiny"
-            VALUE "ProductVersion", "0.7.0.0"
+            VALUE "ProductVersion", "0.8.0.0"
         END
     END
     BLOCK "VarFileInfo"

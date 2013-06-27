@@ -1,7 +1,7 @@
 !define MYPRODUCT "BayCom MXPTiny"
-!define MYVERSION "0.7"
+!define MYVERSION "0.8"
 !define VER_MAJOR 0
-!define VER_MINOR 7
+!define VER_MINOR 8
 
 ;OutFile "MXPTiny-${VER_MAJOR}${VER_MINOR}.exe"
 OutFile "MXPTinyinstall.exe"

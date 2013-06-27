@@ -87,11 +87,11 @@ CMXPTinyDlg::CMXPTinyDlg(CWnd* pParent /*=NULL*/)
 	if(!GetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), _T("folder"), (BYTE *)m_filename.GetBuffer(MAX_PATH), MAX_PATH))
 	{
 		m_filename.ReleaseBuffer();
-		SHGetSpecialFolderPath( 0, pf, CSIDL_MYDOCUMENTS, FALSE ); 
+		SHGetSpecialFolderPath( 0, pf, CSIDL_MYDOCUMENTS, TRUE ); 
 		m_filename.Format(_T("%s\\DeckLink.ts"), pf);	
-	} else 
+	} else {
 		m_filename.ReleaseBuffer();
-
+	}
 	if(!GetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), _T("previewcmd"), (BYTE *)m_vlcexe.GetBuffer(MAX_PATH), MAX_PATH))
 	{
 		m_vlcexe.ReleaseBuffer();
@@ -277,6 +277,7 @@ void CMXPTinyDlg::StartPreview()
 	m_pipe=CreateNamedPipe(_T("\\\\.\\pipe\\DeckLink.ts"), PIPE_ACCESS_OUTBOUND, PIPE_TYPE_BYTE | PIPE_NOWAIT | PIPE_ACCEPT_REMOTE_CLIENTS, 100, 188*1000, 188*1000, 0, NULL);
 
 	m_playing = true;	
+	m_last_tscount.QuadPart = 0;
 	m_tscount.QuadPart = 0;
 	m_streamingDeviceInput->StartCapture();
 	PROCESS_INFORMATION pi;
@@ -693,6 +694,7 @@ HRESULT CMXPTinyDlg::MPEG2TSPacketArrived(IBMDStreamingMPEG2TSPacket* mpeg2TSPac
 	int len=mpeg2TSPacket->GetPayloadSize();
 	int rec_error=0;
 	void *buf;
+
 	mpeg2TSPacket->GetBytes(&buf);
 	DWORD dwBytesWritten;
 	m_tscount.QuadPart+=len;
@@ -706,8 +708,9 @@ HRESULT CMXPTinyDlg::MPEG2TSPacketArrived(IBMDStreamingMPEG2TSPacket* mpeg2TSPac
 		if(m_fh != NULL && !WriteFile(m_fh, buf, len, &dwBytesWritten, NULL)) {
 			rec_error=1;
 		}
-		if(!(m_tscount.LowPart&0xfff)) {
+		if((m_tscount.QuadPart-m_last_tscount.QuadPart)>(1024*10)) {
 			CString str;
+			m_last_tscount.QuadPart=m_tscount.QuadPart;
 			str.Format(_T("Receiving (kB): % 26llu"), m_tscount.QuadPart>>10);
 			if(m_recording) {
 				LARGE_INTEGER FileSize;
@@ -751,6 +754,9 @@ HRESULT CMXPTinyDlg::H264VideoInputModeChanged(void)
 
 void CMXPTinyDlg::OnBnClickedButtonRecord()
 {
+	if (m_streamingDevice == NULL)
+	return;
+
 	if(m_recording) {
 		if(m_fh != NULL) {
 			CloseHandle(m_fh);
@@ -848,6 +854,8 @@ void CMXPTinyDlg::OnBnClickedButtonPrevcfg()
 
 void CMXPTinyDlg::OnBnClickedButtonCustomize()
 {
+	if (m_streamingDevice == NULL)
+		return;
 	CEncodingPresetSetup eps;
 	eps.m_encoding_mode_in= (IBMDStreamingVideoEncodingMode*)m_videoEncodingCombo.GetItemDataPtr(m_videoEncodingCombo.GetCurSel());
 	eps.m_streamingDeviceInput = m_streamingDeviceInput;

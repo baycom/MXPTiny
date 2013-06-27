@@ -64,8 +64,8 @@ protected:
 	CString m_filename;
 	CString m_vlcexe;
 	LARGE_INTEGER m_tscount;
+	LARGE_INTEGER m_last_tscount;
 	DWORD m_bitrate;
-
 
 	// Streaming API:
 	IBMDStreamingDiscovery*			m_streamingDiscovery;
