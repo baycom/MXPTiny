@@ -97,6 +97,7 @@ WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninst
 WriteUninstaller "$INSTDIR\uninst.exe"
 
 File "release\MXPTiny.exe" 
+File "Preview.xspf"
 
 File "install\vcredist_x86.exe"
 
@@ -117,15 +118,18 @@ SetShellVarContext all
 CreateDirectory "$SMPROGRAMS\MXPTiny"
 CreateShortCut "$SMPROGRAMS\MXPTiny\Uninstall.lnk" "$INSTDIR\uninst.exe" "" "$INSTDIR\uninst.exe" 0
 CreateShortCut "$SMPROGRAMS\MXPTiny\MXPTiny.lnk" "$INSTDIR\MXPTiny.exe" "" "$INSTDIR\MXPTiny.exe" 0
+CreateShortCut "$SMPROGRAMS\MXPTiny\Preview.lnk" "$INSTDIR\Preview.xspf" "" "$INSTDIR\Preview.xspf" 0
 SectionEnd ; end of default section
 
 Section "Desktop Menu Shortcut" desktop
 CreateShortCut "$DESKTOP\MXPTiny.lnk" "$INSTDIR\MXPTiny.exe" "" "$INSTDIR\MXPTiny.exe" 0
+CreateShortCut "$DESKTOP\Preview.lnk" "$INSTDIR\Preview.xspf" "" "$INSTDIR\Preview.xspf" 0
 SectionEnd
 
 Section "Quick Launch Menu Shortcut" quicklaunch
 SetShellVarContext current
 CreateShortCut "$QUICKLAUNCH\MXPTiny.lnk" "$INSTDIR\MXPTiny.exe" "" "$INSTDIR\MXPTiny.exe" 0
+CreateShortCut "$QUICKLAUNCH\Preview.lnk" "$INSTDIR\Preview.xspf" "" "$INSTDIR\Preview.xspf" 0
 SectionEnd
  
 Section "-post"
@@ -170,11 +174,12 @@ DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Unins
 SetShellVarContext all
 Delete "$SMPROGRAMS\MXPTiny\*.*"
 Delete "$DESKTOP\MXPTiny.lnk"
+Delete "$DESKTOP\Preview.lnk"
 RMDir "$SMPROGRAMS\MXPTiny"
 
 SetShellVarContext current
 Delete "$QUICKLAUNCH\MXPTiny.lnk"
-
+Delete "$QUICKLAUNCH\Preview.lnk"
 
 SectionEnd ; end of uninstall section
 
