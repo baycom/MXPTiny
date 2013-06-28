@@ -773,6 +773,7 @@ void CMXPTinyDlg::OnBnClickedButtonRecord()
 			}
 		}
 	}
+	m_folder_button.EnableWindow(!m_recording);
 }
 
 
