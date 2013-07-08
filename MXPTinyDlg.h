@@ -46,6 +46,7 @@ protected:
 	CStatic							m_configBoxStatic;
 	CComboBox						m_videoEncodingCombo;
 	CComboBox						m_videoInputDeviceCombo;
+	BOOL						    m_autorec;
 	CSliderCtrl m_bitrate_slider;
 	CStatic m_bitrate_static;
 	CString m_default_exe;
@@ -133,4 +134,6 @@ public:
 	CButton m_prevcfg_button;
 	afx_msg void OnBnClickedButtonCustomize();
 	CButton m_button_customize;
+	CButton m_button_autorec;
+	afx_msg void OnBnClickedAutorec();
 };

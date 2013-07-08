@@ -78,11 +78,15 @@ CMXPTinyDlg::CMXPTinyDlg(CWnd* pParent /*=NULL*/)
 	m_playing = false;
 	m_recording = false;
 	m_deviceMode = bmdStreamingDeviceUnknown;
+	m_autorec = false;
 
 	TCHAR pf[MAX_PATH];
 
 	if(!GetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), _T("bitrate"), (BYTE *)&m_bitrate, sizeof(m_bitrate))) 
 		m_bitrate=20000;
+
+	GetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), _T("autorec"), (BYTE *)&m_autorec, sizeof(m_autorec));
+	m_button_autorec.SetCheck(m_autorec);
 
 	if(!GetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), _T("folder"), (BYTE *)m_filename.GetBuffer(MAX_PATH), MAX_PATH))
 	{
@@ -124,6 +128,8 @@ void CMXPTinyDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON_FOLDER, m_folder_button);
 	DDX_Control(pDX, IDC_BUTTON_PREVCFG, m_prevcfg_button);
 	DDX_Control(pDX, IDC_BUTTON_CUSTOMIZE, m_button_customize);
+	DDX_Check(pDX, IDC_AUTOREC, m_autorec);
+	DDX_Control(pDX, IDC_AUTOREC, m_button_autorec);
 }
 
 BEGIN_MESSAGE_MAP(CMXPTinyDlg, CDialog)
@@ -139,6 +145,7 @@ BEGIN_MESSAGE_MAP(CMXPTinyDlg, CDialog)
 	ON_CBN_SELCHANGE(IDC_COMBO_ENCODING_PRESET, &CMXPTinyDlg::OnCbnSelchangeComboEncodingPreset)
 	ON_BN_CLICKED(IDC_BUTTON_PREVCFG, &CMXPTinyDlg::OnBnClickedButtonPrevcfg)
 	ON_BN_CLICKED(IDC_BUTTON_CUSTOMIZE, &CMXPTinyDlg::OnBnClickedButtonCustomize)
+	ON_BN_CLICKED(IDC_AUTOREC, &CMXPTinyDlg::OnBnClickedAutorec)
 END_MESSAGE_MAP()
 
 
@@ -287,10 +294,18 @@ void CMXPTinyDlg::StartPreview()
     si.cb = sizeof(si);
     ZeroMemory( &pi, sizeof(pi) );
 
-	CreateProcess( NULL, m_vlcexe.GetBuffer(MAX_PATH), NULL, NULL, false, 0, NULL, NULL,  &si, &pi);
-	m_vlcexe.ReleaseBuffer();
+	if(!m_autorec) {
+		CreateProcess( NULL, m_vlcexe.GetBuffer(MAX_PATH), NULL, NULL, false, 0, NULL, NULL,  &si, &pi);
+		m_vlcexe.ReleaseBuffer();
+	} else {
+		if(m_recording) 
+			OnBnClickedButtonRecord();
+		OnBnClickedButtonRecord();
+	}
+
 	CloseHandle(pi.hProcess);
 	CloseHandle(pi.hThread); 
+
 }
 CString frameRate2String(unsigned int rate) 
 {
@@ -556,8 +571,9 @@ void CMXPTinyDlg::activate_device(int i)
 	// during QueryInterface. The device will hold its own reference.
 	ourCallbackDelegate->Release();
 	UpdateUIForNewDevice();
-	if (m_deviceMode != bmdStreamingDeviceUnknown)
+	if (m_deviceMode != bmdStreamingDeviceUnknown) { 
 		UpdateUIForModeChanges();
+	}
 }
 
 HRESULT CMXPTinyDlg::StreamingDeviceArrived(IDeckLink* device)
@@ -747,6 +763,10 @@ HRESULT CMXPTinyDlg::H264VideoInputModeChanged(void)
 	}
 
 	UpdateUIForModeChanges();
+	
+	if(m_autorec && !m_recording) {
+		StartPreview();
+	}
 
 	return S_OK;
 }
@@ -879,4 +899,11 @@ void CMXPTinyDlg::OnBnClickedButtonCustomize()
 		m_videoEncodingCombo.SetCurSel(i);
 		OnCbnSelchangeComboEncodingPreset();
 	}
+}
+
+
+void CMXPTinyDlg::OnBnClickedAutorec()
+{
+	UpdateData(TRUE);
+	SetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), REG_DWORD, _T("autorec"), (BYTE *)&m_autorec, sizeof(m_autorec));
 }
