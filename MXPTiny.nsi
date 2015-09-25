@@ -1,5 +1,5 @@
 !define MYPRODUCT "BayCom MXPTiny"
-!define MYVERSION "0.9"
+!define MYVERSION "0.9.1"
 !define VER_MAJOR 0
 !define VER_MINOR 9
 

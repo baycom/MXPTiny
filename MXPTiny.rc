@@ -121,7 +121,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 IDD_MXPTINY_DIALOG DIALOGEX 0, 0, 320, 127
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
-CAPTION "MXPTiny - Version 0.9 - © 2013 BayCom GmbH"
+CAPTION "MXPTiny - Version 0.9.1 - © BayCom GmbH"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "No device detected",IDC_STATIC_CONFIGBOX,7,7,306,113
@@ -132,13 +132,14 @@ BEGIN
     PUSHBUTTON      "Customize",IDC_BUTTON_CUSTOMIZE,199,48,47,14
     PUSHBUTTON      "Prev. Cfg",IDC_BUTTON_PREVCFG,257,25,47,14
     PUSHBUTTON      "Preview",IDC_BUTTON_START_PREVIEW,258,48,47,14
-    LTEXT           "Test",IDC_STATIC_ENCODING_PRESET,17,74,230,8
+    LTEXT           "Test",IDC_STATIC_ENCODING_PRESET,17,74,179,8
     LTEXT           "Bitrate:",IDC_STATIC_BITRATE,18,96,25,8
     CONTROL         "",IDC_SLIDER_BITRATE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,93,93,100,15
     CTEXT           "Statisch",IDC_STATIC_BITRATE_CURRENT,103,110,82,8
     PUSHBUTTON      "Folder",IDC_BUTTON_FOLDER,204,93,47,14
     PUSHBUTTON      "Record",IDC_BUTTON_RECORD,258,93,47,14
     CONTROL         "Auto Rec",IDC_AUTOREC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,261,72,45,10
+    CONTROL         "Auto Preview",IDC_AUTOPREVIEW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,201,71,59,10
 END
 
 
@@ -215,8 +216,8 @@ IDR_MAINFRAME           ICON                    "res\\MXPTiny.ico"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,9,0,0
- PRODUCTVERSION 0,9,0,0
+ FILEVERSION 0,9,1,0
+ PRODUCTVERSION 0,9,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -233,18 +234,29 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "BayCom GmbH"
             VALUE "FileDescription", "TS File Streamer for Decklink devices"
-            VALUE "FileVersion", "0.9.0.0"
+            VALUE "FileVersion", "0.9.1.0"
             VALUE "InternalName", "MXPTiny.exe"
             VALUE "LegalCopyright", "(c) BayCom GmbH.  All rights reserved."
             VALUE "OriginalFilename", "MXPTiny.exe"
             VALUE "ProductName", "MXPTiny"
-            VALUE "ProductVersion", "0.9.0.0"
+            VALUE "ProductVersion", "0.9.1.0"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
         VALUE "Translation", 0x409, 1252
     END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_MXPTINY_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
 END
 
 #endif    // Englisch (USA) resources

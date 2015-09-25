@@ -79,6 +79,7 @@ CMXPTinyDlg::CMXPTinyDlg(CWnd* pParent /*=NULL*/)
 	m_recording = false;
 	m_deviceMode = bmdStreamingDeviceUnknown;
 	m_autorec = false;
+	m_autopreview = false;
 
 	TCHAR pf[MAX_PATH];
 
@@ -87,6 +88,9 @@ CMXPTinyDlg::CMXPTinyDlg(CWnd* pParent /*=NULL*/)
 
 	GetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), _T("autorec"), (BYTE *)&m_autorec, sizeof(m_autorec));
 	m_button_autorec.SetCheck(m_autorec);
+
+	GetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), _T("autopreview"), (BYTE *)&m_autopreview, sizeof(m_autopreview));
+	m_button_autopreview.SetCheck(m_autopreview);
 
 	if(!GetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), _T("folder"), (BYTE *)m_filename.GetBuffer(MAX_PATH), MAX_PATH))
 	{
@@ -130,6 +134,8 @@ void CMXPTinyDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON_CUSTOMIZE, m_button_customize);
 	DDX_Check(pDX, IDC_AUTOREC, m_autorec);
 	DDX_Control(pDX, IDC_AUTOREC, m_button_autorec);
+	DDX_Check(pDX, IDC_AUTOPREVIEW, m_autopreview);
+	DDX_Control(pDX, IDC_AUTOPREVIEW, m_button_autopreview);
 }
 
 BEGIN_MESSAGE_MAP(CMXPTinyDlg, CDialog)
@@ -146,6 +152,7 @@ BEGIN_MESSAGE_MAP(CMXPTinyDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_PREVCFG, &CMXPTinyDlg::OnBnClickedButtonPrevcfg)
 	ON_BN_CLICKED(IDC_BUTTON_CUSTOMIZE, &CMXPTinyDlg::OnBnClickedButtonCustomize)
 	ON_BN_CLICKED(IDC_AUTOREC, &CMXPTinyDlg::OnBnClickedAutorec)
+	ON_BN_CLICKED(IDC_AUTOPREVIEW, &CMXPTinyDlg::OnBnClickedAutopreview)
 END_MESSAGE_MAP()
 
 
@@ -764,7 +771,7 @@ HRESULT CMXPTinyDlg::H264VideoInputModeChanged(void)
 
 	UpdateUIForModeChanges();
 	
-	if(m_autorec && !m_recording) {
+	if((m_autorec || m_autopreview) && !m_recording) {
 		StartPreview();
 	}
 
@@ -906,4 +913,11 @@ void CMXPTinyDlg::OnBnClickedAutorec()
 {
 	UpdateData(TRUE);
 	SetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), REG_DWORD, _T("autorec"), (BYTE *)&m_autorec, sizeof(m_autorec));
+}
+
+
+void CMXPTinyDlg::OnBnClickedAutopreview()
+{
+	UpdateData(TRUE);
+	SetKeyData(HKEY_CURRENT_USER, _T("Software\\BayCom\\MXPTiny\\Settings"), REG_DWORD, _T("autopreview"), (BYTE *)&m_autopreview, sizeof(m_autopreview));
 }
